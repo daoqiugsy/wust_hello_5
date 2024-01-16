@@ -1,4 +1,4 @@
-package com.wust_hello.model;
+package com.wust_hello.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
