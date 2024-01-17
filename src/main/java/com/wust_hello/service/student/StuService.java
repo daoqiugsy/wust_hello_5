@@ -1,4 +1,4 @@
-package com.wust_hello.service;
+package com.wust_hello.service.student;
 
 import com.wust_hello.model.PageBean;
 

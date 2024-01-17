@@ -2,7 +2,8 @@ package com.wust_hello.controller;
 
 import com.wust_hello.common.Result;
 import com.wust_hello.dto.TotalWeekDto;
-import com.wust_hello.service.WeekService;
+import com.wust_hello.dto.WeekDetailDto;
+import com.wust_hello.service.student.WeekService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -41,7 +42,7 @@ public class WeekController {
     public Result getDetals(
             @RequestParam(value = "reportId") Integer reportId,
             HttpServletRequest request){
-
-
+        WeekDetailDto weekDetailDto=weekService.getDetails(reportId,request.getHeader("token"));
+        return Result.success(weekDetailDto);
     }
 }

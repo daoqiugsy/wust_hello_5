@@ -1,11 +1,11 @@
-package com.wust_hello.service.impl;
+package com.wust_hello.service.student.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.wust_hello.dao.StuMapper;
 import com.wust_hello.model.PageBean;
 import com.wust_hello.model.Student;
-import com.wust_hello.service.StuService;
+import com.wust_hello.service.student.StuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.wust_hello.service.impl;
+package com.wust_hello.service.student.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -9,7 +9,7 @@ import com.wust_hello.dto.TotalWeekDto;
 import com.wust_hello.dto.WeekDetailDto;
 import com.wust_hello.model.Week;
 import com.wust_hello.dto.WeekSummary;
-import com.wust_hello.service.WeekService;
+import com.wust_hello.service.student.WeekService;
 import com.wust_hello.util.TokenHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -56,6 +56,15 @@ public class WeekServiceImpl extends ServiceImpl<WeekMapper, Week> implements We
 
     @Override
     public WeekDetailDto getDetails(Integer reportId, String token) {
-        return null;
+        LambdaQueryWrapper<Week> queryWrapper=new LambdaQueryWrapper<>();
+        queryWrapper.eq(Week::getStuId,TokenHandler.parseToken(token))
+                .eq(Week::getId,reportId);
+        Week week=getOne(queryWrapper);
+        if(null==week){
+            throw new BizException(1003,"查不到该条周报");
+        }
+        WeekDetailDto weekDetailDto=new WeekDetailDto();
+        BeanUtils.copyProperties(week,weekDetailDto);
+        return weekDetailDto;
     }
 }

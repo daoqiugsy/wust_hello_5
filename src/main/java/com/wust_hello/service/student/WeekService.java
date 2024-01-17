@@ -1,4 +1,4 @@
-package com.wust_hello.service;
+package com.wust_hello.service.student;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.wust_hello.dto.TotalWeekDto;

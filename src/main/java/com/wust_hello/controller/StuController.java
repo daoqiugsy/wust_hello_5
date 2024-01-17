@@ -2,14 +2,10 @@ package com.wust_hello.controller;
 
 import com.wust_hello.model.PageBean;
 import com.wust_hello.model.Result;
-import com.wust_hello.model.Student;
-import com.wust_hello.service.StuService;
+import com.wust_hello.service.student.StuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.logging.Logger;
 
 //学生管理
 @Slf4j

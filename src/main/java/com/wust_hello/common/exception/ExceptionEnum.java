@@ -8,7 +8,6 @@ public enum ExceptionEnum implements BaseErrorInfoInterface{
     NOT_FOUND(4004, "未找到该资源!"),
     INTERNAL_SERVER_ERROR(5000, "服务器内部错误!"),
     SERVER_BUSY(5003,"服务器正忙，请稍后再试!");
-
     /**
      * 错误码
      */
