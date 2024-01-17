@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wust_hello.mapper.StuMapper">
+<mapper namespace="com.wust_hello.dao.StuMapper">
     <!--条件查询-->
     <select id="list" resultType="com.wust_hello.model.Student">
         select *
