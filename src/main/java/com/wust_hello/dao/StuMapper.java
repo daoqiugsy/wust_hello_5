@@ -1,4 +1,4 @@
-package com.wust_hello.mapper;
+package com.wust_hello.dao;
 
 import com.wust_hello.model.Student;
 import org.apache.ibatis.annotations.Mapper;
