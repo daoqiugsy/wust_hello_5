@@ -1,4 +1,4 @@
-package com.wust_hello.utils;
+package com.wust_hello.util;
 
 
 public class IdGenerator{

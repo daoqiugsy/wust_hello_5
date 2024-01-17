@@ -5,7 +5,6 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
  * 自动填充处理类

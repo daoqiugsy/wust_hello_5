@@ -2,10 +2,12 @@ package com.wust_hello.model;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+@Data
 public class Week {
     Integer id;
     Integer stuId;
