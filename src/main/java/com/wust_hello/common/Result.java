@@ -1,5 +1,6 @@
-package com.wust_hello.model;
+package com.wust_hello.common;
 
+import com.wust_hello.common.exception.BaseErrorInfoInterface;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,4 +17,18 @@ public class Result {
     public static Result success(){return new Result(1,"success",null);}
     public static Result success(Object data){return new Result(1,"success",data);}
     public static Result error(String message){return new Result(0,message,null);}
+    public static Result error(BaseErrorInfoInterface errorInfo) {
+        Result rb = new Result();
+        rb.setCode(errorInfo.getResultCode());
+        rb.setMessage(errorInfo.getResultMsg());
+        rb.setData(null);
+        return rb;
+    }
+    public static Result error(Integer code, String message) {
+        Result rb = new Result();
+        rb.setCode(code);
+        rb.setMessage(message);
+        rb.setData(null);
+        return rb;
+    }
 }
