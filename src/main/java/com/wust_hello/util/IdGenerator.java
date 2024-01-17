@@ -1,6 +1,11 @@
 package com.wust_hello.util;
 
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
+
+@Component
 public class IdGenerator{
 
     //下面两个每个5位，加起来就是10位的工作机器id
@@ -120,5 +125,9 @@ public class IdGenerator{
 //            System.out.println(idGenerator.nextId());
 //        }
 //    }
+    @Bean
+    public IdGenerator getGenerator(){
+        return new IdGenerator(1,1,1);
+    }
 
 }

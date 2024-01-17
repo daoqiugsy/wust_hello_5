@@ -9,15 +9,16 @@ import java.time.LocalDateTime;
 
 @Data
 public class Leisure {
-    Integer id;
+    Long id;
     Short period;
     Boolean isLeisure;
     LocalDate date;
-    Integer stuId;
+    Long stuId;
     @TableField(fill= FieldFill.INSERT)
     LocalDateTime createTime;
     @TableField(fill=FieldFill.INSERT_UPDATE)
     LocalDateTime updateTime;
+    @TableField(fill=FieldFill.INSERT)
     Boolean delete;
 
 }

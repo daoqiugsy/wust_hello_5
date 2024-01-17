@@ -10,4 +10,5 @@ import java.time.LocalDate;
 public interface WeekService extends IService<Week> {
     public TotalWeekDto getTotalReport(LocalDate startTime, LocalDate endTime, Integer page, Integer pageSize,String token);
     public WeekDetailDto getDetails(Integer reportId,String token);
+    public void updateReport(Week week,String token);
 }

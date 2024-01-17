@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 
 @Data
 public class Week {
-    Integer id;
-    Integer stuId;
+    Long id;
+    Long stuId;
     LocalDate startTime;
     LocalDate endTime;
     String currentPlan;
@@ -21,5 +21,6 @@ public class Week {
     LocalDateTime createTime;
     @TableField(fill=FieldFill.INSERT_UPDATE)
     LocalDateTime updateTime;
+    @TableField(fill=FieldFill.INSERT)
     Boolean delete;
 }

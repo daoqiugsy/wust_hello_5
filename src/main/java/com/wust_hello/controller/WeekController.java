@@ -3,6 +3,7 @@ package com.wust_hello.controller;
 import com.wust_hello.common.Result;
 import com.wust_hello.dto.TotalWeekDto;
 import com.wust_hello.dto.WeekDetailDto;
+import com.wust_hello.model.Week;
 import com.wust_hello.service.student.WeekService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,9 @@ public class WeekController {
     }
     //student create or update week report
     @PostMapping
-    public Result updateReport(){
-        return null;
+    public Result updateReport(@RequestBody Week week, HttpServletRequest request){
+        weekService.updateReport(week,request.getHeader("token"));
+        return Result.success();
     }
 
     //student look up report details
