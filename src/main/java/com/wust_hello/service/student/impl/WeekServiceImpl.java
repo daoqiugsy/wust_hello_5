@@ -12,6 +12,7 @@ import com.wust_hello.dto.WeekSummary;
 import com.wust_hello.service.student.WeekService;
 import com.wust_hello.util.IdGenerator;
 import com.wust_hello.util.TokenHandler;
+import io.jsonwebtoken.JwtException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -81,8 +82,8 @@ public class WeekServiceImpl extends ServiceImpl<WeekMapper, Week> implements We
         if(!endTime.isAfter(startTime)){
             throw new BizException(1001,"开始日期不能超过结束日期");
         }
-        else if(startTime.getDayOfWeek()!= DayOfWeek.SUNDAY){
-            throw new BizException(1004,"开始日期必须为周日");
+        else if(startTime.getDayOfWeek()!= DayOfWeek.MONDAY){
+            throw new BizException(1004,"开始日期必须为周一");
         }
         else if(!startTime.plusDays(6L).equals(endTime)){
             throw new BizException(1002, "时间段必须为1周");

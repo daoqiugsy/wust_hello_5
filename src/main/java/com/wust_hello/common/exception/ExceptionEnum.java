@@ -6,6 +6,7 @@ public enum ExceptionEnum implements BaseErrorInfoInterface{
     BODY_NOT_MATCH(4000,"请求的数据格式不符!"),
     SIGNATURE_NOT_MATCH(4001,"请求的数字签名不匹配!"),
     NOT_FOUND(4004, "未找到该资源!"),
+    TOKEN_ERROR(2001,"token error!"),
     INTERNAL_SERVER_ERROR(5000, "服务器内部错误!"),
     SERVER_BUSY(5003,"服务器正忙，请稍后再试!");
     /**

@@ -15,7 +15,7 @@ public class TokenHandler {
     /**
      * 过期时间(单位:秒)
      */
-    public static final int ACCESS_EXPIRE = 3600;
+    public static final int ACCESS_EXPIRE = 3600*24;
     /**
      * 加密算法
      */

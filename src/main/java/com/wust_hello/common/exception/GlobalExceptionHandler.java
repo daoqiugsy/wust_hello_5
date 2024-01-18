@@ -1,6 +1,7 @@
 package com.wust_hello.common.exception;
 
 import com.wust_hello.common.Result;
+import io.jsonwebtoken.JwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,6 +37,12 @@ public class GlobalExceptionHandler {
         log.info("发生空指针异常！原因是:",e);
         return Result.error(ExceptionEnum.BODY_NOT_MATCH);
     }
+    @ExceptionHandler(value = JwtException.class)
+    @ResponseBody
+    public Result exceptionHandler(HttpServletRequest req, JwtException e){
+        log.info("发生令牌校验异常！原因是:",e);
+        return Result.error(ExceptionEnum.TOKEN_ERROR);
+    }
 
     /**
      * 处理其他异常
@@ -49,4 +56,5 @@ public class GlobalExceptionHandler {
         log.info("未知异常！原因是:",e);
         return Result.error(ExceptionEnum.INTERNAL_SERVER_ERROR);
     }
+
 }
