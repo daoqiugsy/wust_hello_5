@@ -14,12 +14,14 @@ import com.wust_hello.util.IdGenerator;
 import com.wust_hello.util.TokenHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Transactional
 @Service
 public class WeekServiceImpl extends ServiceImpl<WeekMapper, Week> implements WeekService {
 
