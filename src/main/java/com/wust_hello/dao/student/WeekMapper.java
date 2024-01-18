@@ -1,4 +1,4 @@
-package com.wust_hello.dao;
+package com.wust_hello.dao.student;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wust_hello.model.Week;

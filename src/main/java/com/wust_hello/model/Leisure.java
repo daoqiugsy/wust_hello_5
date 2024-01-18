@@ -19,6 +19,6 @@ public class Leisure {
     @TableField(fill=FieldFill.INSERT_UPDATE)
     LocalDateTime updateTime;
     @TableField(fill=FieldFill.INSERT)
-    Boolean delete;
+    Boolean deleted;
 
 }

@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wust_hello.common.exception.BizException;
-import com.wust_hello.dao.WeekMapper;
+import com.wust_hello.dao.student.WeekMapper;
 import com.wust_hello.dto.TotalWeekDto;
 import com.wust_hello.dto.WeekDetailDto;
 import com.wust_hello.model.Week;
@@ -13,20 +13,17 @@ import com.wust_hello.service.student.WeekService;
 import com.wust_hello.util.IdGenerator;
 import com.wust_hello.util.TokenHandler;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class WeekServiceImpl extends ServiceImpl<WeekMapper, Week> implements WeekService {
 
-    @Autowired
-    private IdGenerator idGenerator;
+    private IdGenerator idGenerator=new IdGenerator(1L,1L,1L);
     @Override
     public TotalWeekDto getTotalReport(LocalDate startTime, LocalDate endTime, Integer page, Integer pageSize,String token)throws BizException {
         if(!endTime.isAfter(startTime)){
@@ -42,7 +39,8 @@ public class WeekServiceImpl extends ServiceImpl<WeekMapper, Week> implements We
         LambdaQueryWrapper<Week> queryWrapper=new LambdaQueryWrapper<>();
         queryWrapper.eq(Week::getStuId,userId)
                 .ge(Week::getStartTime,startTime)
-                .le(Week::getEndTime,endTime);
+                .le(Week::getEndTime,endTime)
+                .eq(Week::getDeleted,false);
         Page<Week> pageInfo=new Page<>(page,pageSize);
         page(pageInfo,queryWrapper);
         List<WeekSummary> summaryList=pageInfo
@@ -60,13 +58,14 @@ public class WeekServiceImpl extends ServiceImpl<WeekMapper, Week> implements We
     }
 
     @Override
-    public WeekDetailDto getDetails(Integer reportId, String token) {
+    public WeekDetailDto getDetails(Long reportId, String token) {
         LambdaQueryWrapper<Week> queryWrapper=new LambdaQueryWrapper<>();
         queryWrapper.eq(Week::getStuId,TokenHandler.parseToken(token))
-                .eq(Week::getId,reportId);
+                .eq(Week::getId,reportId)
+                .eq(Week::getDeleted,false);
         Week week=getOne(queryWrapper);
         if(null==week){
-            throw new BizException(1003,"查不到该条周报");
+            throw new BizException(1003,"查不到该条周报或权限不足");
         }
         WeekDetailDto weekDetailDto=new WeekDetailDto();
         BeanUtils.copyProperties(week,weekDetailDto);
@@ -91,13 +90,13 @@ public class WeekServiceImpl extends ServiceImpl<WeekMapper, Week> implements We
         }
         LambdaQueryWrapper<Week> queryWrapper=new LambdaQueryWrapper<>();
         queryWrapper.eq(Week::getStartTime,startTime)
-                .eq(Week::getDelete,false);
+                .eq(Week::getDeleted,false);
         Week preWeek=getOne(queryWrapper);
         week.setId(idGenerator.nextId());
         week.setStuId(TokenHandler.parseToken(token));
         save(week);
         if(null!=preWeek){
-            preWeek.setDelete(true);
+            preWeek.setDeleted(true);
             updateById(preWeek);
         }
 
