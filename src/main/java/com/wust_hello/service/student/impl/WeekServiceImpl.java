@@ -79,7 +79,13 @@ public class WeekServiceImpl extends ServiceImpl<WeekMapper, Week> implements We
     public void updateReport(Week week, String token) {
         LocalDate startTime=week.getStartTime();
         LocalDate endTime=week.getEndTime();
-        if(!endTime.isAfter(startTime)){
+        if(null==startTime||null==endTime){
+            throw new BizException(1007,"未选择时间");
+        }
+        else if(week.getCurrentPlan().equals("")||week.getNextPlan().equals("")||week.getSentiment().equals("")){
+            throw new BizException(1008,"输入不全");
+        }
+        else if(!endTime.isAfter(startTime)){
             throw new BizException(1001,"开始日期不能超过结束日期");
         }
         else if(startTime.getDayOfWeek()!= DayOfWeek.MONDAY){
