@@ -3,11 +3,14 @@ package com.wust_hello.common.exception;
 import com.wust_hello.common.Result;
 import io.jsonwebtoken.JwtException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
+
+@ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
 //    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);

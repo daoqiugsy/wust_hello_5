@@ -19,14 +19,14 @@ public class Result {
     public static Result error(String message){return new Result(0,message,null);}
     public static Result error(BaseErrorInfoInterface errorInfo) {
         Result rb = new Result();
-        rb.setCode(errorInfo.getResultCode());
+        rb.setCode(0);
         rb.setMessage(errorInfo.getResultMsg());
         rb.setData(null);
         return rb;
     }
     public static Result error(Integer code, String message) {
         Result rb = new Result();
-        rb.setCode(code);
+        rb.setCode(0);
         rb.setMessage(message);
         rb.setData(null);
         return rb;
