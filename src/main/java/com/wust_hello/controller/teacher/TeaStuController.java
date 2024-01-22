@@ -16,7 +16,6 @@ import java.io.IOException;
 //学生管理
 @Slf4j
 @RestController
-
 public class TeaStuController {
     //private static Logger log = Logger.getLogger(StuController.class);
     //查询学生信息
@@ -28,14 +27,19 @@ public class TeaStuController {
                        String name,
                        HttpServletRequest request) {
         log.info("分页查询，参数：{}，{},{}", page,pageSize,name);
+        log.info("token:{}",request.getHeader("token"));
         PageBean pagebean =stuService.page(page, pageSize,name,request.getHeader("token"));
+        if (pagebean == null) {
+            return Result.error("查询失败");
+        }
         return Result.success(pagebean);
     }
     //导出学生信息
     @GetMapping("teacher/info_export")
-    public Result export(HttpServletResponse response) throws IOException {
+    public Result export(HttpServletResponse response,HttpServletRequest request) throws IOException {
         log.info("导出学生信息");
-        return  stuService.download(response);
+
+        return  stuService.download(response,request.getHeader("token"));
     }
 
 
