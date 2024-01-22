@@ -1,9 +1,12 @@
 package com.wust_hello.controller.teacher;
 
 import com.wust_hello.common.Result;
+import com.wust_hello.dto.StudentDto;
 import com.wust_hello.dto.WeekDetailDto;
 import com.wust_hello.model.PageBean;
+import com.wust_hello.model.Student;
 import com.wust_hello.service.teacher.WeekService;
+import com.wust_hello.service.teacher.StuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
