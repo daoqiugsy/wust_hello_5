@@ -25,7 +25,10 @@ public class StuServiceimpl implements StuService {
     public PageBean page(Integer page,Integer pageSize,String name,String token) {
     //校验token
         Long userId= TokenHandler.parseToken(token);
-
+        log.info("userId:{}",userId);
+        if(stuMapper.isgetid(userId)==null){
+            return null;
+        }
        //设置分页参数
         PageHelper.startPage(page,pageSize);
         List<StudentDto>studentList=stuMapper.list(name);
@@ -35,12 +38,16 @@ public class StuServiceimpl implements StuService {
     }
 
     @Override
-    public Result download(HttpServletResponse response) throws IOException {
+    public Result download(HttpServletResponse response ,String token) throws IOException {
+        Long userId= TokenHandler.parseToken(token);
+        if(stuMapper.isgetid(userId)==null){
+            return Result.error("没有权限");
+        }
         List<StudentDto> studentDtolist = stuMapper.findAll();
         log.info("list:{}", studentDtolist);
         response.setContentType("application/vnd.ms-excel");// 设置文本内省
         response.setCharacterEncoding("utf-8");// 设置字符编码
-        response.setHeader("Content-disposition", "attachment;filename=demo.xlsx"); // 设置响应头
+        response.setHeader("Content-disposition", "attachment;filename=学生信息表.xlsx"); // 设置响应头
         EasyExcel.write(response.getOutputStream(), StudentDto.class).sheet("学生信息表").doWrite(studentDtolist); //用io流来写入数据
         return Result.success();
     }
