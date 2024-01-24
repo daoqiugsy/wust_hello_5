@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wust_hello.dao.Teacher.TeaWeekMapper">
+    <!--条件查询-->
+    <select id="list" resultType="com.wust_hello.dto.WeekDetailDto">
+        select w.id, s.name, w.start_time, w.end_time,
+        LEFT(w.current_plan, 15) as current_plan,
+        LEFT(w.next_plan, 15) as next_plan,
+        LEFT(w.sentiment, 15) as sentiment,
+        w.is_push
+        from student s
+        join week w ON s.id = w.stu_id
+        <where>
+            <if test="name != null and name != ''">
+                and s.name like concat('%', #{name}, '%')
+            </if>
+            <if test="start_time != null and end_time != null">
+                and (w.start_time = #{start_time} and w.end_time = #{end_time})
+            </if>
+            and w.`delete` = 0 and s.`delete` = 0
+        </where>
+        order by s.name desc
+    </select>
+    <!--根据id查询    -->
+    <select id="getById" resultType="com.wust_hello.dto.WeekDetailDto">
+        select w.id,s.name,w.start_time,w.end_time,w.current_plan,w.next_plan,w.is_push,w.sentiment
+        from week w
+        join student s ON w.stu_id= s.id
+        <where>
+            and w.id=#{id}
+        </where>
+
+    </select>
+
+
+</mapper>
