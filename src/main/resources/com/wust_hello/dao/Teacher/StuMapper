@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wust_hello.dao.Teacher.StuMapper">
+    <!--条件查询-->
+    <select id="list" resultType="com.wust_hello.dto.StudentDto">
+        select s.id , s.name , c.name as college, m.name as major, s.grade, s.edu
+        from student s
+        join college c on s.college_id = c.id
+        join major m on s.major_id = m.id
+        <where>
+            <if test="name != null and name != ''">
+                s.name like concat('%',#{name},'%')
+            </if>
+            and s.`delete` = 0
+        </where>
+    </select>
+    <!--    全部学生信息查询-->
+    <select id="findAll" resultType="com.wust_hello.dto.StudentDto">
+        select s.id , s.name , c.name as college, m.name as major, s.grade, s.edu
+        from student s
+        join college c on s.college_id = c.id
+        join major m on s.major_id = m.id
+        <where>
+            s.`delete` = 0
+        </where>
+    </select>
+
+</mapper>
