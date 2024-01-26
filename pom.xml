@@ -96,6 +96,13 @@
 			<version>0.12.3</version>
 		</dependency>
 
+			<!-- 雪花算法生成UUID的相关依赖 -->
+	        <dependency>
+	            <groupId>cn.hutool</groupId>
+	            <artifactId>hutool-core</artifactId>
+	            <version>5.8.20</version>
+	        </dependency>
+
 
 	</dependencies>
 
