@@ -3,7 +3,7 @@ package com.wust_hello.controller.student;
 import com.wust_hello.dto.CollegeDto;
 import com.wust_hello.dto.MajorDto;
 import com.wust_hello.dto.StudentDto;
-import com.wust_hello.model.Result;
+import com.wust_hello.common.Result;
 import com.wust_hello.model.Student;
 import com.wust_hello.service.student.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
