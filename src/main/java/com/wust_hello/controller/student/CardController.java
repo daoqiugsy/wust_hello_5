@@ -4,7 +4,7 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import com.wust_hello.model.Card;
 import com.wust_hello.model.PageBean;
-import com.wust_hello.model.Result;
+import com.wust_hello.common.Result;
 import com.wust_hello.service.student.CardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
