@@ -11,7 +11,7 @@ public interface TeaWeekMapper {
     public List<WeekDetailDto> list(String name, LocalDate start_time, LocalDate end_time);
 
     public WeekDetailDto getById(Integer id);
-    @Select("select * from user where id=#{id}")
+    @Select("select * from user where id=#{id} and role =1")
     public  Boolean isgetid(Long id);
 
 
