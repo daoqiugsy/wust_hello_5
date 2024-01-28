@@ -10,7 +10,7 @@ public interface StuMapper {
     public List<StudentDto> list(String name);
 
     public List<StudentDto> findAll();
-    @Select("select * from user where id=#{id}")
+    @Select("select * from user where id=#{id} and role=1")
     public Boolean isgetid(Long id);
 }
 
