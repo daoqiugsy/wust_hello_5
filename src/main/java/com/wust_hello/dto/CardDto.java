@@ -14,9 +14,8 @@ public class CardDto {
         /*打卡记录id*/
         private Long id;
 
-        /*打卡开始时间*/
-        String startTime;
-        String endTime;
+        /*时间段*/
+        private String range;
         /*打卡日期*/
         private String date;
         /*有效时间*/
