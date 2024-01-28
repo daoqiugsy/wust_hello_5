@@ -17,6 +17,6 @@ public class Student {
         private String edu;
         private LocalDateTime createTime;
         private LocalDateTime updateTime;
-        private int delete;//是否删除
+        private int deleted;//是否删除
     }
 
