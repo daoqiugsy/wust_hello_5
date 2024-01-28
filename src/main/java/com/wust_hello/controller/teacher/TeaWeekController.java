@@ -1,46 +1,41 @@
 package com.wust_hello.controller.teacher;
 
 import com.wust_hello.common.Result;
+import com.wust_hello.dto.WeekDetailDto;
 import com.wust_hello.model.PageBean;
-import com.wust_hello.service.teacher.StuService;
+import com.wust_hello.service.teacher.WeekService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.time.LocalDate;
 
-//学生管理
 @Slf4j
 @RestController
-public class TeaStuController {
-    //private static Logger log = Logger.getLogger(StuController.class);
-    //查询学生信息
+@RequestMapping("/teacher/con_week_rp/")
+public class TeaWeekController {
     @Autowired
-    private StuService stuService;
-    @GetMapping("teacher/search_stu")
+    private WeekService weekService;
+    @GetMapping("search")
+
+
     public Result page(@RequestParam(defaultValue ="1") Integer page,
                        @RequestParam(defaultValue ="10") Integer pageSize,
                        String name,
+                       @RequestParam(value="start_time",defaultValue = "")@DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate start_time,
+                       @RequestParam(value="end_time",defaultValue = "")@DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate end_time,
                        HttpServletRequest request) {
-        log.info("分页查询，参数：{}，{},{}", page,pageSize,name);
-        log.info("token:{}",request.getHeader("token"));
-        PageBean pagebean =stuService.page(page, pageSize,name,request.getHeader("token"));
-        if (pagebean == null) {
-            return Result.error("无权限");
-        }
+        log.info("分页查询，参数：{}，{},{},{},{}", page,pageSize,name,start_time,end_time);
+        PageBean pagebean =weekService.page(page, pageSize,name,start_time,end_time,request.getHeader("token"));
         return Result.success(pagebean);
     }
-    //导出学生信息
-    @GetMapping("teacher/info_export")
-    public Result export(HttpServletResponse response,HttpServletRequest request) throws IOException {
-        log.info("导出学生信息");
-
-        return  stuService.download(response,request.getHeader("token"));
+    //根据id查询
+    @GetMapping("details/{id}")
+    public Result details(@PathVariable("id") Integer id, HttpServletRequest request){
+        log.info("根据id查询，参数：{}", id);
+        WeekDetailDto weekDetailDto = weekService.getById(id,request.getHeader("token"));
+        return Result.success(weekDetailDto);
     }
-
-
 }
