@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class Student {
-        private Integer id;
+        private Long id;
         private String name;
-        private Integer collegeId;//学院外键
-        private Integer majorId;
+        private Long collegeId;//学院外键
+        private Long majorId;
         private Integer grade;
         private String edu;
         private LocalDateTime createTime;

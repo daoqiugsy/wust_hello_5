@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 public class StudentDto {
-    private Integer id;
+    private Long id;
     private String name;
     private String college;//学院外键
     private String major;//专业名称
