@@ -19,7 +19,7 @@
             <if test="start_time != null and end_time != null">
                 and (w.start_time = #{start_time} and w.end_time = #{end_time})
             </if>
-            and w.`delete` = 0 and s.`delete` = 0
+            and w.`deleted` = 0 and s.`deleted` = 0
         </where>
         order by s.name desc
     </select>
