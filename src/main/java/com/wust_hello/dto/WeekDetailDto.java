@@ -12,10 +12,10 @@ import java.time.LocalDate;
 public class WeekDetailDto {
     Integer id;
     String name;
-    LocalDate start_time;
-    LocalDate end_time;
-    String current_plan;
-    String next_plan;
-    Boolean is_push;
+    LocalDate startTime;
+    LocalDate endTime;
+    String currentPlan;
+    String nextPlan;
+    Boolean isPush;
     String sentiment;
 }
