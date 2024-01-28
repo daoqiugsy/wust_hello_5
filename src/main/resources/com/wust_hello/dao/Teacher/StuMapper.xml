@@ -13,7 +13,7 @@
             <if test="name != null and name != ''">
                 s.name like concat('%',#{name},'%')
             </if>
-            and s.`delete` = 0
+            and s.`deleted` = 0
         </where>
     </select>
     <!--    全部学生信息查询-->
@@ -23,7 +23,7 @@
         join college c on s.college_id = c.id
         join major m on s.major_id = m.id
         <where>
-            s.`delete` = 0
+            s.`deleted` = 0
         </where>
     </select>
 
