@@ -2,9 +2,9 @@ package com.wust_hello.controller.teacher;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.wust_hello.dao.Teacher.CardMapper;
+import com.wust_hello.dao.Teacher.LeisureMapper;
 import com.wust_hello.dto.query.CardQuery;
 import com.wust_hello.dto.query.PageDto;
-import com.wust_hello.mapper.LeisureMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -63,12 +63,12 @@ public class TeacherController {
     }
 
     //按照打卡日期正序排列（从前至今）
-    @GetMapping("/teacher/sortdate")
-    List<CardMsg> sortDateCardMsg(int pageSize,int pageNum){
+    @GetMapping("/teacher/sort")
+    List<CardMsg> sortDateCardMsg(int pageSize,int pageNum,int sort){
         int startData,endData;
         startData=pageSize*(pageNum-1);
         endData=pageSize;
-        return mapper.sortDateCardMsg(pageSize,pageNum,startData,endData);
+        return mapper.sortDateCardMsg(pageSize,pageNum,startData,endData,sort);
     }
 
     //空闲人数查询

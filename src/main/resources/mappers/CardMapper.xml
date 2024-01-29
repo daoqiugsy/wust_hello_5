@@ -14,9 +14,12 @@
     </select>
 
     <select id="sortDateCardMsg" resultType="com.wust_hello.utilpojo.CardMsg">
-        select name,date,start_time,end_time,valid from card,student where card.stu_id=student.id order by start_time asc limit #{startData},#{endData};
+        select name,date,start_time,end_time,valid from card,student <where><if test="sort ==1">card.stu_id=student.id order by start_time asc</if> <if test="sort==2">card.stu_id=student.id order by valid asc</if> <if test="sort==3">card.stu_id=student.id order by valid desc</if></where> limit #{startData},#{endData};
     </select>
 
 </mapper>
+
+
+
 
 

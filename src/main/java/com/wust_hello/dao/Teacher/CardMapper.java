@@ -1,6 +1,5 @@
 package com.wust_hello.dao.Teacher;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import com.wust_hello.utilpojo.CardMsg;
 
@@ -21,6 +20,7 @@ public interface CardMapper {
     //学生打卡信息查询（/teacher/getmessage）
     List<CardMsg> findCardMsg(@Param("pageSize") int pageSize,@Param("name") String name,@Param("pageNum")int pageNum,@Param("startData")int startData,@Param("endData")int endData);
 
-    //按照打卡日期正序排列（/teacher/sortdate）（从前至今）
-    List<CardMsg> sortDateCardMsg(@Param("pageSize")int pageSize,@Param("pageNum")int pageNum,@Param("startData")int startData,@Param("endData")int endData);
+    //排列（/teacher/sort）（sort=1表示按照时间从前至今排列，sort=2表示按工时从少到多排列，sort=3表示按工时由多到少排列）
+    List<CardMsg> sortDateCardMsg(@Param("pageSize")int pageSize,@Param("pageNum")int pageNum,@Param("startData")int startData,@Param("endData")int endData,@Param("sort")int sort);
 }
+
