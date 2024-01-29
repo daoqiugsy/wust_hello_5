@@ -80,6 +80,8 @@ public class RegisterServiceImpl implements RegisterService {
         user.setRole(false);
         userMapper.insert(user);
 
+        
+
         Student student = new Student();
         student.setName(name);
         stuMapper.insert(student);
