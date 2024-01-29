@@ -1,7 +1,7 @@
 package com.wust_hello.controller.student;
 
 import com.wust_hello.common.Result;
-import com.wust_hello.dto.LeisureDto;
+import com.wust_hello.dto.student.LeisureDto;
 import com.wust_hello.service.student.LeisureService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

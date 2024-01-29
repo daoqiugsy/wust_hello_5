@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wust_hello.dao.student.LeisureMapper;
-import com.wust_hello.dto.LeisureDto;
+import com.wust_hello.dto.student.LeisureDto;
 import com.wust_hello.model.Leisure;
 import com.wust_hello.service.student.LeisureService;
 import com.wust_hello.util.IdGenerator;
@@ -42,7 +42,7 @@ public class LeisureServiceImpl extends ServiceImpl<LeisureMapper, Leisure> impl
             for(short j=0;j<5;j++){
                 Leisure leisure=new Leisure();
                 leisure.setId(idGenerator.nextId());
-                leisure.setPeriod(i);
+                leisure.setTimeSlot(i);
                 leisure.setIsLeisure(1==periodList[i][j]);
                 leisure.setDate(finalMonday.plusDays(j));
                 leisure.setStuId(stuId);
@@ -71,7 +71,7 @@ public class LeisureServiceImpl extends ServiceImpl<LeisureMapper, Leisure> impl
                 for (short j=0;j<9;j++){
                     Leisure leisure=new Leisure();
                     leisure.setId(idGenerator.nextId());
-                    leisure.setPeriod(j);
+                    leisure.setTimeSlot(j);
                     leisure.setDate(finalMonday.plusDays(i));
                     leisure.setStuId(stuId);
                     boolean isLeisure=j>6?true:false;
@@ -86,7 +86,7 @@ public class LeisureServiceImpl extends ServiceImpl<LeisureMapper, Leisure> impl
         short[][] periodList =new short[9][5];
         leisureList.stream().forEach(item->{
             short dayIndex= Long.valueOf(finalMonday.until(item.getDate(),ChronoUnit.DAYS)).shortValue();
-            short periodIndex=item.getPeriod();
+            short periodIndex=item.getTimeSlot();
             periodList[periodIndex][dayIndex]=item.getIsLeisure()?(short)1:(short)0;
         });
         return new LeisureDto(periodList);

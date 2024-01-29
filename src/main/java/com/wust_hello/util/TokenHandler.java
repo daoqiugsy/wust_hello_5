@@ -93,8 +93,7 @@ public class TokenHandler {
     }
 
     public static Long parseToken(String token) {
-        Integer intId=Integer.parseInt((parseClaim(token).getPayload().get("userId")).toString());
-        return intId.longValue();
+        return Long.parseLong((parseClaim(token).getPayload().get("userId")).toString());
     }
 
 }

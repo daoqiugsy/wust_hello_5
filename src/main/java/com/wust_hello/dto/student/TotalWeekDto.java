@@ -1,4 +1,4 @@
-package com.wust_hello.dto;
+package com.wust_hello.dto.student;
 
 import lombok.Data;
 

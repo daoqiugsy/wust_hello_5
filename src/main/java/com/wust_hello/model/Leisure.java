@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Data
 public class Leisure {
     Long id;
-    Short period;
+    Short timeSlot;
     Boolean isLeisure;
     LocalDate date;
     Long stuId;

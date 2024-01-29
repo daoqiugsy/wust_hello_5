@@ -1,8 +1,8 @@
 package com.wust_hello.service.student;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.wust_hello.dto.TotalWeekDto;
-import com.wust_hello.dto.WeekDetailDto;
+import com.wust_hello.dto.student.TotalWeekDto;
+import com.wust_hello.dto.student.WeekDetailDto;
 import com.wust_hello.model.Week;
 
 import java.time.LocalDate;

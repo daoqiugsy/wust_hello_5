@@ -1,8 +1,8 @@
 package com.wust_hello.controller.student;
 
 import com.wust_hello.common.Result;
-import com.wust_hello.dto.TotalWeekDto;
-import com.wust_hello.dto.WeekDetailDto;
+import com.wust_hello.dto.student.TotalWeekDto;
+import com.wust_hello.dto.student.WeekDetailDto;
 import com.wust_hello.model.Week;
 import com.wust_hello.service.student.WeekService;
 import lombok.extern.slf4j.Slf4j;
