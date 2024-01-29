@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CardDto {
 
-        /*打卡记录id*/
-        private Long id;
 
         /*时间段*/
         private String range;
