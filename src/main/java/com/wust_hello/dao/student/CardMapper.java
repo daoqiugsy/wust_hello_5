@@ -1,7 +1,6 @@
 package com.wust_hello.dao.student;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.wust_hello.dto.CardDto;
 import com.wust_hello.model.Card;
 import org.apache.ibatis.annotations.Mapper;
 
