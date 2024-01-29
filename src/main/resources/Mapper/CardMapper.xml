@@ -26,8 +26,19 @@
             <if test="updateTime != null">#{updateTime},</if>
         </trim>
     </insert>
-    <select id="selectAllByStuId" resultType="com.wust_hello.model.Card">
-        select * from card where stu_id = #{userId}
+
+
+    <select id="selectCardGroup" resultType="com.wust_hello.dto.student.CardBueaty">
+        select date, sum(valid) as valid
+        from card
+        where stu_id = #{userId}
+        group by date
+    </select>
+    <select id="selectByDate" resultType="com.wust_hello.model.Card">
+        select *
+        from card
+        where stu_id = #{userId}
+          and date = #{date}
     </select>
 
 
