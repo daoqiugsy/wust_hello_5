@@ -1,5 +1,6 @@
-package com.wust_hello.mapper;
+package com.wust_hello.dao.Teacher;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import com.wust_hello.utilpojo.CardMsg;
 

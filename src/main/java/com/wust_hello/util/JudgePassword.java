@@ -12,6 +12,14 @@ import org.springframework.stereotype.Component;
 public class JudgePassword {
 
     private String password;
+
+    /**
+     * @description: TODO 手机号校验
+     * @author Ctungi
+     * @date 2024/1/29 20:07
+     */
+
+    public static final String REGEX_PHONE_JUDGE = "^1[3-9]\\d{9}$";
     /**
      * 正则-密码强度-基础要求, 数字
      */
@@ -39,6 +47,10 @@ public class JudgePassword {
 
     public boolean judgeSPChar() {
         return this.password.matches(REGEX_PASSWORD_STRENGTH_CHARS);
+    }
+
+    public boolean judgePhone() {
+        return this.password.matches(REGEX_PHONE_JUDGE);
     }
 
     public boolean hyperJudge() {
