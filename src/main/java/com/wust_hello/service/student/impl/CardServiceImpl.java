@@ -4,7 +4,7 @@ import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import com.wust_hello.dao.student.CardMapper;
-import com.wust_hello.dto.CardDto;
+import com.wust_hello.dto.student.CardDto;
 import com.wust_hello.model.Card;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
