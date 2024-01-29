@@ -24,6 +24,6 @@ public class Student {
         private LocalDateTime createTime;
         @TableField(fill = FieldFill.INSERT_UPDATE)
         private LocalDateTime updateTime;
-        private int deleted;//是否删除
+        private boolean deleted;//是否删除
     }
 
