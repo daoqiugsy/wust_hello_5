@@ -1,4 +1,4 @@
-package com.wust_hello.controller;
+package com.wust_hello.controller.teacher;
 
 import com.wust_hello.mapper.CardMapper;
 import com.wust_hello.mapper.LeisureMapper;
