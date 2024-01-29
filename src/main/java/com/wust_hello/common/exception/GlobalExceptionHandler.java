@@ -47,17 +47,17 @@ public class GlobalExceptionHandler {
         return Result.error(ExceptionEnum.TOKEN_ERROR);
     }
 
-    /**
-     * 处理其他异常
-     * @param req
-     * @param e
-     * @return
-     */
-    @ExceptionHandler(value =Exception.class)
-    @ResponseBody
-    public Result exceptionHandler(HttpServletRequest req, Exception e){
-        log.info("未知异常！原因是:",e);
-        return Result.error(ExceptionEnum.INTERNAL_SERVER_ERROR);
-    }
+//    /**
+//     * 处理其他异常
+//     * @param req
+//     * @param e
+//     * @return
+//     */
+//    @ExceptionHandler(value =Exception.class)
+//    @ResponseBody
+//    public Result exceptionHandler(HttpServletRequest req, Exception e){
+//        log.info("未知异常！原因是:",e);
+//        return Result.error(ExceptionEnum.INTERNAL_SERVER_ERROR);
+//    }
 
 }
