@@ -1,9 +1,9 @@
 package com.wust_hello.service.student.impl;
 
 import com.wust_hello.dao.student.PersonMapper;
-import com.wust_hello.dto.CollegeDto;
-import com.wust_hello.dto.MajorDto;
-import com.wust_hello.dto.StudentDto;
+import com.wust_hello.dto.student.CollegeDto;
+import com.wust_hello.dto.student.MajorDto;
+import com.wust_hello.dto.student.StudentDto;
 import com.wust_hello.model.College;
 import com.wust_hello.model.Major;
 import com.wust_hello.model.Student;
