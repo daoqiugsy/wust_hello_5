@@ -35,20 +35,23 @@ public class CardServiceImpl implements CardService {
         PageInfo<Card> page = new PageInfo<>(cardList);
 
         List<CardDto> cardDtos = new ArrayList<>();
-        CardDto dto = new CardDto();
-        for (Card card : cardList) {
-            dto.setId(card.getId());
-            /*将开始时间和结束时间转化为打卡时间段*/
-            DateTime start = DateUtil.parse(card.getStartTime());
-            DateTime end = DateUtil.parse(card.getEndTime());
-            int start1 = start.getHours();
-            int end1 = end.getHours();
-            String range = start1 + "-" + end1;
-            dto.setRange(range);
-            dto.setDate(card.getDate());
-            dto.setValid(card.getValid());
-            cardDtos.add(dto);
+        if(cardList != null && !cardList.isEmpty()){
+            for (Card card : cardList) {
+                CardDto dto = new CardDto();
+                dto.setId(card.getId());
+                /*将开始时间和结束时间转化为打卡时间段*/
+                DateTime start = DateUtil.parse(card.getStartTime());
+                DateTime end = DateUtil.parse(card.getEndTime());
+                int start1 = start.getHours();
+                int end1 = end.getHours();
+                String range = start1 + "-" + end1;
+                dto.setRange(range);
+                dto.setDate(card.getDate());
+                dto.setValid(card.getValid());
+                cardDtos.add(dto);
+            }
         }
+        
         PageInfo<CardDto> pageInfo = new PageInfo<>(cardDtos);
         BeanUtils.copyProperties(page, pageInfo);
         PageInfo info = PageInfo.of(cardDtos);
