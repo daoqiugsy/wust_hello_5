@@ -6,10 +6,7 @@ import com.wust_hello.model.User;
 import com.wust_hello.service.user.LoginService;
 import com.wust_hello.service.user.UpdatePasswordService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -20,7 +17,7 @@ public class LoginController {
     @Autowired
     private UpdatePasswordService updatePasswordService;
 
-    @GetMapping("/user/authenticateUser")
+    @PostMapping("/user/authenticateUser")
     public Result login(@RequestBody User user) {
         //登录
         return loginService.login(user);
