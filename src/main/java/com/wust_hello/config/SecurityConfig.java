@@ -53,9 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //不通过Session获取SecurityContext
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .cors()
-                .configurationSource(corsConfigurationSource())
-                .and()
                 .authorizeRequests()
                 // 对于登录接口 允许匿名访问
                 .antMatchers("/user/authenticateUser", "/user/register").anonymous()
@@ -64,6 +61,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
+        http.cors();
     }
 
     /**
@@ -77,17 +75,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(Collections.singletonList("*"));
-        configuration.setAllowedMethods(Collections.singletonList("*"));
-        configuration.setAllowedHeaders(Collections.singletonList("*"));
-        configuration.setMaxAge(Duration.ofHours(1));
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+
 
 }
