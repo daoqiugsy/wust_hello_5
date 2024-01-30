@@ -7,8 +7,8 @@
     <select id="list" resultType="com.wust_hello.dto.StudentDto">
         select s.id , s.name , c.name as college, m.name as major, s.grade, s.edu
         from student s
-        join college c on s.college_id = c.id
-        join major m on s.major_id = m.id
+        left join college c on s.college_id = c.id
+        left join major m on s.major_id = m.id
         <where>
             <if test="name != null and name != ''">
                 s.name like concat('%',#{name},'%')
@@ -20,8 +20,8 @@
     <select id="findAll" resultType="com.wust_hello.dto.StudentDto">
         select s.id , s.name , c.name as college, m.name as major, s.grade, s.edu
         from student s
-        join college c on s.college_id = c.id
-        join major m on s.major_id = m.id
+       left join college c on s.college_id = c.id
+      left  join major m on s.major_id = m.id
         <where>
             s.`deleted` = 0
         </where>
