@@ -25,15 +25,36 @@ public class PersonServiceImpl implements PersonService {
     public StudentDto selectById(String token) {
         Long stuId= TokenHandler.parseToken(token);
         Student student = personMapper.selectById(stuId);
-        String college = personMapper.selectByCollegeId(student.getCollegeId()).getName();
-        String major = personMapper.selectByMajorId(student.getMajorId()).getName();
+        String college = null;
+        String major = null;
+        String name = null;
+        Integer grade = null;
+        String edu = null;
+        if(student != null){
+            if(student.getCollegeId() != null){
+               college = personMapper.selectByCollegeId(student.getCollegeId()).getName();
+            }
+            if(student.getMajorId() != null){
+                major = personMapper.selectByMajorId(student.getMajorId()).getName();
+            }
+            if(student.getName() != null){
+                name = student.getName();
+            }
+            if(student.getGrade() != null){
+                grade = student.getGrade();
+            }
+            if(student.getEdu() != null){
+                edu = student.getEdu();
+            }
+        }
+
         StudentDto studentDto = new StudentDto(
                 student.getId(),
-                student.getName(),
+                name,
                 college,
                 major,
-                student.getGrade(),
-                student.getEdu());
+                grade,
+                edu);
         return studentDto;
     }
 
