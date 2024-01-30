@@ -22,18 +22,21 @@ public class UserController {
     @Autowired
     private RegisterService registerService;
 
+    @CrossOrigin
     @PostMapping("/user/authenticateUser")
     public Result login(@RequestBody User user) {
         //登录
         return loginService.login(user);
     }
 
+    @CrossOrigin
     @PostMapping("/student/updatePassword")
     public Result changePassword(@RequestBody PasswordForm form) {
         //修改密码
         return updatePasswordService.update(form);
     }
 
+    @CrossOrigin
     @PostMapping("/user/register")
     public Result register(@RequestBody RegisterForm stu) {
         //注册
