@@ -46,9 +46,12 @@ public class LoginServiceImpl implements LoginService {
         //强制类型转换获取我们的user对象
         UserDetailsImpl principal = (UserDetailsImpl) authenticate.getPrincipal();
         Long userId = principal.getUser().getId();
+        Boolean role = principal.getUser().isRole();
         String jwtToken = TokenHandler.genAccessToken(userId);
+        String level = role ? "Teacher" : "Student";
         Map<String, String> map = new HashMap<>();
         map.put("token", jwtToken);
+        map.put("level", level);
 
         return Result.success(map);
     }
