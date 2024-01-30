@@ -80,9 +80,9 @@ public class RegisterServiceImpl implements RegisterService {
         user.setRole(false);
         userMapper.insert(user);
 
-        
-
+        Long userid = user.getId();
         Student student = new Student();
+        student.setId(userid);
         student.setName(name);
         stuMapper.insert(student);
 
