@@ -54,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .cors()
+                .configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeRequests()
                 // 对于登录接口 允许匿名访问
