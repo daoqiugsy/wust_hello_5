@@ -13,6 +13,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -27,6 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AuthenticationEntryPoint authenticationEntryPoint;
+
+//    @Autowired
+//    private CorsFilter corsFilter;
 
     @Autowired
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
@@ -51,8 +55,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 //关闭csrf
                 .csrf().disable()
+//                .addFilterBefore(corsFilter, ChannelProcessingFilter.class)
                 //不通过Session获取SecurityContext
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .cors()
                 .and()
                 .authorizeRequests()
                 // 对于登录接口 允许匿名访问
@@ -63,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         http.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
-        http.cors();
+
     }
 
     /**
