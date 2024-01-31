@@ -11,7 +11,11 @@ public class StudentDto {
     private Long id;
     private String name;
     private String college;//学院外键
+    private Long collegeId;
     private String major;//专业名称
+    private Long majorId;//专业名称
     private Integer grade;//年级名称
     private String edu;
+
+
 }
