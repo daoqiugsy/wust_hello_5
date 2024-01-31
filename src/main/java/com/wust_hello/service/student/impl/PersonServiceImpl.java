@@ -27,15 +27,19 @@ public class PersonServiceImpl implements PersonService {
         Student student = personMapper.selectById(stuId);
         String college = null;
         String major = null;
+        Long collegeId = null;
+        Long majorId = null;
         String name = null;
         Integer grade = null;
         String edu = null;
         if(student != null){
             if(student.getCollegeId() != null){
                college = personMapper.selectByCollegeId(student.getCollegeId()).getName();
+               collegeId = personMapper.selectByCollegeId(student.getCollegeId()).getId();
             }
             if(student.getMajorId() != null){
                 major = personMapper.selectByMajorId(student.getMajorId()).getName();
+                majorId = personMapper.selectByMajorId(student.getMajorId()).getId();
             }
             if(student.getName() != null){
                 name = student.getName();
@@ -52,7 +56,9 @@ public class PersonServiceImpl implements PersonService {
                 student.getId(),
                 name,
                 college,
+                collegeId,
                 major,
+                majorId,
                 grade,
                 edu);
         return studentDto;
