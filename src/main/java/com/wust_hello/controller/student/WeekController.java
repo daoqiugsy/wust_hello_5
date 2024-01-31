@@ -16,6 +16,7 @@ import java.time.LocalDate;
 
 @Slf4j
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @Validated
 @RequestMapping("/student/time/weekReport")
 public class WeekController {

@@ -5,6 +5,7 @@ import com.wust_hello.model.PageBean;
 import com.wust_hello.service.teacher.StuService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import java.io.IOException;
 
 //学生管理
 @Slf4j
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class TeaStuController {
     //private static Logger log = Logger.getLogger(StuController.class);
