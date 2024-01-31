@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wust_hello.dao.student.LeisureMapper;
 import com.wust_hello.dto.student.LeisureDto;
+import com.wust_hello.dto.student.LeisureModifyDto;
 import com.wust_hello.model.Leisure;
 import com.wust_hello.service.student.LeisureService;
 import com.wust_hello.util.IdGenerator;
@@ -24,7 +25,7 @@ public class LeisureServiceImpl extends ServiceImpl<LeisureMapper, Leisure> impl
     private IdGenerator idGenerator=new IdGenerator(1L,1L,1L);
 
     @Override
-    public void updateLeisure(Boolean thisWeek,LeisureDto leisureDto, String token) {
+    public void updateLeisure(Boolean thisWeek, LeisureModifyDto leisureModifyDto, String token) {
         Long stuId= TokenHandler.parseToken(token);
         LocalDate today=LocalDate.now();
         LocalDate monday = today.with(TemporalAdjusters.previousOrSame( DayOfWeek.MONDAY));
@@ -32,24 +33,24 @@ public class LeisureServiceImpl extends ServiceImpl<LeisureMapper, Leisure> impl
         LambdaUpdateWrapper<Leisure> updateWrapper=new LambdaUpdateWrapper<>();
         updateWrapper.eq(Leisure::getStuId,stuId)
                 .eq(Leisure::getDeleted,false)
-                .ge(Leisure::getDate,finalMonday)
-                .le(Leisure::getDate,finalMonday.plusDays(4))
-                        .set(Leisure::getDeleted,true);
+                .eq(Leisure::getDate,finalMonday.plusDays(leisureModifyDto.getDay()-1))
+                .eq(Leisure::getTimeSlot,leisureModifyDto.getTime()-1)
+                        .set(Leisure::getIsLeisure,1==leisureModifyDto.getStatus());
         update(updateWrapper);
-        short[][] periodList=leisureDto.getLeisureList();
-        List<Leisure> leisureList=new ArrayList<>();
-        for(short i=0;i<9;i++){
-            for(short j=0;j<5;j++){
-                Leisure leisure=new Leisure();
-                leisure.setId(idGenerator.nextId());
-                leisure.setTimeSlot(i);
-                leisure.setIsLeisure(1==periodList[i][j]);
-                leisure.setDate(finalMonday.plusDays(j));
-                leisure.setStuId(stuId);
-                leisureList.add(leisure);
-            }
-        }
-        saveBatch(leisureList);
+//        short[][] periodList=leisureDto.getLeisureList();
+//        List<Leisure> leisureList=new ArrayList<>();
+//        for(short i=0;i<9;i++){
+//            for(short j=0;j<5;j++){
+//                Leisure leisure=new Leisure();
+//                leisure.setId(idGenerator.nextId());
+//                leisure.setTimeSlot(i);
+//                leisure.setIsLeisure(1==periodList[i][j]);
+//                leisure.setDate(finalMonday.plusDays(j));
+//                leisure.setStuId(stuId);
+//                leisureList.add(leisure);
+//            }
+//        }
+//        saveBatch(leisureList);
     }
 
     @Override

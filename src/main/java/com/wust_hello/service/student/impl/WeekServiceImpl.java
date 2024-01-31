@@ -28,8 +28,31 @@ public class WeekServiceImpl extends ServiceImpl<WeekMapper, Week> implements We
     private IdGenerator idGenerator=new IdGenerator(1L,1L,1L);
     @Override
     public TotalWeekDto getTotalReport(LocalDate startTime, LocalDate endTime, Integer page, Integer pageSize,String token)throws BizException {
-        if(!endTime.isAfter(startTime)){
+
+        Long userId= TokenHandler.parseToken(token);
+        LambdaQueryWrapper<Week> queryWrapper=new LambdaQueryWrapper<>();
+        if(null!=startTime&&null==endTime){
+            queryWrapper.eq(Week::getStuId,userId)
+                    .ge(Week::getStartTime,startTime)
+                    .eq(Week::getDeleted,false);
+        }
+        else if(null==startTime&&null!=endTime){
+            queryWrapper.eq(Week::getStuId,userId)
+                    .le(Week::getEndTime,endTime)
+                    .eq(Week::getDeleted,false);
+        }
+        else if(null==startTime&&null==endTime){
+            queryWrapper.eq(Week::getStuId,userId)
+                    .eq(Week::getDeleted,false);
+        }
+        else if(!endTime.isAfter(startTime)){
             throw new BizException(1001,"开始日期不能超过结束日期");
+        }
+        else{
+            queryWrapper.eq(Week::getStuId,userId)
+                    .ge(Week::getStartTime,startTime)
+                    .le(Week::getEndTime,endTime)
+                    .eq(Week::getDeleted,false);
         }
 //        else if(startTime.getDayOfWeek()!= DayOfWeek.SUNDAY){
 //            throw new BizException(1004,"开始日期必须为周日");
@@ -37,12 +60,7 @@ public class WeekServiceImpl extends ServiceImpl<WeekMapper, Week> implements We
 //        else if(endTime.getDayOfWeek()!= DayOfWeek.SATURDAY){
 //            throw new BizException(1002, "时间段必须为整周");
 //        }
-        Long userId= TokenHandler.parseToken(token);
-        LambdaQueryWrapper<Week> queryWrapper=new LambdaQueryWrapper<>();
-        queryWrapper.eq(Week::getStuId,userId)
-                .ge(Week::getStartTime,startTime)
-                .le(Week::getEndTime,endTime)
-                .eq(Week::getDeleted,false);
+
         Page<Week> pageInfo=new Page<>(page,pageSize);
         page(pageInfo,queryWrapper);
         List<WeekSummary> summaryList=pageInfo

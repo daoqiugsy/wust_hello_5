@@ -26,8 +26,8 @@ public class WeekController {
     //student get total week report
     @GetMapping("/total")
     public Result getTotalReport(
-            @RequestParam(value = "startTime") @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate startTime,
-            @RequestParam(value = "endTime")@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endTime,
+            @RequestParam(value = "startTime",required = false) @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate startTime,
+            @RequestParam(value = "endTime",required = false)@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endTime,
             @RequestParam(value = "page")  Integer page,
             @RequestParam(value = "pageSize")Integer pageSize,
             HttpServletRequest request){

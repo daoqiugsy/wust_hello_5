@@ -2,6 +2,7 @@ package com.wust_hello.controller.student;
 
 import com.wust_hello.common.Result;
 import com.wust_hello.dto.student.LeisureDto;
+import com.wust_hello.dto.student.LeisureModifyDto;
 import com.wust_hello.service.student.LeisureService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +31,9 @@ public class LeisureController {
     @PostMapping
     public Result updateLeisure(
             @RequestParam(value = "thisWeek") Boolean thisWeek,
-            @RequestBody LeisureDto leisureDto,
+            @RequestBody LeisureModifyDto leisureModifyDto,
             HttpServletRequest request){
-        leisureService.updateLeisure(thisWeek,leisureDto, request.getHeader("token"));
+        leisureService.updateLeisure(thisWeek,leisureModifyDto, request.getHeader("token"));
         return Result.success();
     }
 }
